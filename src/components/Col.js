@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../Styles/Col.css';
+import '../styles/Col.css';
 
 class Col extends Component{
     render(){

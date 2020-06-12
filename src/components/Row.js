@@ -4,7 +4,7 @@ import Col from './Col.js';
 class Row extends Component{
     render(){
         return(
-            this.props.cols.map(col => (<Col/>))
+            this.props.cols.map((_, index) => <Col key={ index } /> )
         );
     }
 }
