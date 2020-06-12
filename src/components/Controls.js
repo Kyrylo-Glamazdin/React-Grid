@@ -9,13 +9,13 @@ const Controls = ({ addRow, addCol, removeRow, removeCol, fillUncolored, fillAll
     ]
     return (
         <div className='controls'>
-            <button onClick = { addRow }>Add Row</button>
+            <button onClick={ addRow }>Add Row</button>
             <button onClick={ addCol }>Add Col</button>
             <button onClick={ removeRow }>Remove Row</button>
-            <button onClick = { removeCol }>Remove Col</button>
-            <button onClick = { fillUncolored }>Fill All Uncolored</button>
-            <button onClick = { fillAll }>Fill All</button>
-            <button onClick = { clear }>Clear</button>
+            <button onClick={ removeCol }>Remove Col</button>
+            <button onClick={ fillUncolored }>Fill All Uncolored</button>
+            <button onClick={ fillAll }>Fill All</button>
+            <button onClick={ clear }>Clear</button>
             <select onChange={ chooseColor }>
                 <option default hidden>Choose a color</option>
                 {
