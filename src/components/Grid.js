@@ -3,13 +3,10 @@ import Row from './Row.js';
 
 class Grid extends Component{
     render(){
-        const { rows } = this.props;
         return (
             <main>
-                <h1>columns console.log correctly but just doesnt display correctly rn (i think this is what you were aiming for if you look at the data structure after clicking add col button) </h1>
-                {
-                    this.props.rows.map((row, index) => (<Row key={ index } cols={row}/>))
-                }
+                <h1>So I'm thinking the color of each cell must be the actual value stored in the corresponding cell in the array. Then each Col element would set its backgroundColor propertly by using the value stored in that place in 'rows' array</h1>
+                {this.props.rows.map((row, index) => (<Row key={ index } cols={row}/>))}
             </main>
         );
     }

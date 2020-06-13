@@ -4,7 +4,7 @@ import '../styles/Col.css';
 class Col extends Component{
     render(){
         return(
-            <div className="individual-col">
+            <div style={{backgroundColor: this.props.cellColor}} className="individual-col">
             </div>
         );
     }
