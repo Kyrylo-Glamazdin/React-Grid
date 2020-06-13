@@ -9,8 +9,9 @@ class App extends Component{
     super();
     this.state = {
       rows: [],
-      color: ''
+      color: '#E9EEF7'
     };
+
     this.addRow = this.addRow.bind(this);
     this.addCol = this.addCol.bind(this);
     this.removeRow = this.removeRow.bind(this);
@@ -24,7 +25,7 @@ class App extends Component{
   addRow() {
     let existingRows = this.state.rows;
     if (existingRows.length === 0){
-      let newCol = "placeholder";
+      let newCol = "#E9EEF7";
       let newRow = [];
       newRow.push(newCol);
       existingRows.push(newRow);
@@ -32,7 +33,7 @@ class App extends Component{
     else{
       let newRow = [];
       for (let i = 0; i < existingRows[0].length; i++){
-        let newCol = "placeholder";
+        let newCol = "#E9EEF7";
         newRow.push(newCol);
       }
       existingRows.push(newRow);
@@ -42,25 +43,68 @@ class App extends Component{
 
   addCol() {
     const rows = [...this.state.rows];
-    rows.forEach(row => row.push('placeholder'));
-    console.log(rows);
+    if (rows.length === 0){
+      let newRow = [];
+      let newCol = "#E9EEF7";
+      newRow.push(newCol);
+      rows.push(newRow);
+    }
+    else{
+      rows.forEach(row => row.push("#E9EEF7"));
+    }
     this.setState({ rows });
   };
+
   removeRow() {
-    console.log('removerow');
+    let {rows} = this.state;
+    rows.pop();
+    this.setState({rows});
   }
+
   removeCol() {
-    console.log('removecol');
+    let {rows} = this.state;
+    for (let i = 0; i < rows.length; i++){
+      rows[i].pop();
+    }
+    if (!rows[0] || rows[0].length === 0){
+      this.setState({rows: []});
+    }
+    else{
+      this.setState({rows});
+    }
   }
+
   fillUncolored() {
-    console.log('filluncolored');
+    let {rows} = this.state;
+    for (let i = 0; i < rows.length; i++){
+      for (let j = 0; j < rows[i].length; j++){
+        if (rows[i][j] === "#E9EEF7"){
+          rows[i][j] = this.state.color;
+        }
+      }
+    }
+    this.setState({rows});
   }
   fillAll() {
-    console.log('fillall');
+    let {rows} = this.state;
+    for (let i = 0; i < rows.length; i++){
+      for (let j = 0; j < rows[i].length; j++){
+        rows[i][j] = this.state.color;
+      }
+    }
+    this.setState({rows});
   }
+
   clear() {
-    console.log('clear');
+    let {rows} = this.state;
+    for (let i = 0; i < rows.length; i++){
+      for (let j = 0; j < rows[i].length; j++){
+        rows[i][j] = "#E9EEF7";
+      }
+    }
+    this.setState({rows});
   }
+
   chooseColor({ target }) {
     const color = target.value.toLowerCase();
     this.setState({ color });

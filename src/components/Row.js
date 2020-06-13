@@ -4,7 +4,12 @@ import Col from './Col.js';
 class Row extends Component{
     render(){
         return(
-            this.props.cols.map((_, index) => <Col key={ index } /> )
+            <div className = "individual-row">
+            {this.props.cols.map((cellColor, index) => <Col 
+            cellColor={cellColor} 
+            key={ index } 
+            /> )}
+            </div>
         );
     }
 }
