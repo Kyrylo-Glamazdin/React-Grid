@@ -6,8 +6,9 @@ import '../styles/Grid.css';
 const Grid = ({ rows, color, setCellColor, setActive, activeColoring, activeDrawing, setInactive }) => {
     
     return(
-        <main className="main-grid">
-            {rows.map((col, index) => (<Row key={index} cols={col} color={color} indexr={index} setCellColor={setCellColor} setActive={setActive} activeColoring={activeColoring} activeDrawing={activeDrawing}setInactive = {setInactive}/>))}
+        <main onMouseLeave={function () { setInactive() }} onMouseUp={function () { setInactive() }}>
+            {rows.map((col, index) => (<Row key={index} cols={col} color={color} indexr={index} setCellColor={setCellColor} setActive={setActive} activeColoring={activeColoring} activeDrawing={activeDrawing}setInactive = {setInactive} />))}
+
         </main>
     )
 };
