@@ -9,7 +9,8 @@ class App extends Component{
     super();
     this.state = {
       rows: [],
-      color: '#E9EEF7'
+      color: '#E9EEF7',
+      activeDrawing: false
     };
 
     this.addRow = this.addRow.bind(this);
@@ -21,6 +22,9 @@ class App extends Component{
     this.clear = this.clear.bind(this);
     this.chooseColor = this.chooseColor.bind(this);
     this.setCellColor = this.setCellColor.bind(this);
+    this.activeColoring = this.activeColoring.bind(this);
+    this.setActive = this.setActive.bind(this);
+    this.setInactive = this.setInactive.bind(this);
   }
 
   addRow() {
@@ -109,7 +113,6 @@ class App extends Component{
   chooseColor({ target }) {
     const color = target.value.toLowerCase();
     this.setState({ color });
-    console.log(color);
   }
 
     setCellColor(i, j, color) {
@@ -118,9 +121,29 @@ class App extends Component{
         this.setState({ rows });
     }
 
+    activeColoring(i, j, color, activeDrawing) {
+        if (activeDrawing) {
+            const { rows } = this.state;
+            rows[i][j] = color;
+            this.setState({ rows });
+        }
+    }
+
+    setActive() {
+        let { activeDrawing } = this.state;
+        activeDrawing = true;
+        this.setState({ activeDrawing });
+    }
+
+    setInactive() {
+        let { activeDrawing } = this.state;
+        activeDrawing = false;
+        this.setState({ activeDrawing });
+    }
+
   render(){
-    const { addRow, addCol, removeRow, removeCol, fillUncolored, fillAll, clear, chooseColor, setCellColor } = this;
-    const { rows, color } = this.state;
+    const { addRow, addCol, removeRow, removeCol, fillUncolored, fillAll, clear, chooseColor, setCellColor, activeColoring, setActive, setInactive } = this;
+    const { rows, color, activeDrawing } = this.state;
     return(
       <div>
         <Controls 
@@ -135,7 +158,7 @@ class App extends Component{
         />
 
         <Grid 
-                rows={rows} color={color} setCellColor={setCellColor}
+                rows={rows} color={color} setCellColor={setCellColor} activeColoring={activeColoring} setActive={setActive} activeDrawing={activeDrawing} setInactive={setInactive}
         />
       </div>
     );
