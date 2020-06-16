@@ -13,6 +13,10 @@ class Row extends Component{
                 indexc={index}
                 indexr={this.props.indexr}
                 setCellColor={this.props.setCellColor}
+                setActive={this.props.setActive}
+                activeColoring={this.props.activeColoring}
+                activeDrawing={this.props.activeDrawing}
+                setInactive={this.props.setInactive}
             /> )}
             </div>
         );
