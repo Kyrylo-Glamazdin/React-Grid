@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
+import React from 'react';
 import '../styles/Col.css';
 
-class Col extends Component{
-    render(){
-        return(
-            <div style={{backgroundColor: this.props.cellColor}} className="individual-col">
-            </div>
-        );
-    }
+const Col = (props) => {
+    console.log(props);
+    return (
+        <div style={{ backgroundColor: props.cellColor }} className="individual-col" onClick={function () {props.setCellColor(props.indexr, props.indexc, props.color)}}>
+        </div>
+
+    );
 }
 
 export default Col;
