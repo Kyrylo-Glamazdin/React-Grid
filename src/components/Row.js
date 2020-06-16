@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Col from './Col.js';
 
+//the Row component represents individual row inside the grid
 class Row extends Component{
     render() {
-        //console.log(this.props.setCellColor);
         return(
             <div className = "individual-row">
             {this.props.cols.map((cellColor, index) => <Col

@@ -4,15 +4,17 @@ import React, {Component} from 'react';
 import Grid from "./Grid.js"
 import Controls from './Controls';
 
+//the main component of the app. contains the functions for modifying the grid and the current state of the grid
 class App extends Component{
   constructor(){
     super();
     this.state = {
-      rows: [],
-      color: '#E9EEF7',
-      activeDrawing: false
+      rows: [], //rows of the grid
+      color: '#E9EEF7', //currently selected color 
+      activeDrawing: false //indicates whether the drawing is active
     };
 
+    //bindings
     this.addRow = this.addRow.bind(this);
     this.addCol = this.addCol.bind(this);
     this.removeRow = this.removeRow.bind(this);
@@ -27,14 +29,17 @@ class App extends Component{
     this.setInactive = this.setInactive.bind(this);
   }
 
+  //adds a new row to the grid with the same number of columns as all other rows
   addRow() {
     let existingRows = this.state.rows;
+    //if the grid is empty, add a row with one column to it
     if (existingRows.length === 0){
       let newCol = "#E9EEF7";
       let newRow = [];
       newRow.push(newCol);
       existingRows.push(newRow);
     }
+    //if the grid contains other rows, add a new one with the same number of columns
     else{
       let newRow = [];
       for (let i = 0; i < existingRows[0].length; i++){
@@ -43,29 +48,34 @@ class App extends Component{
       }
       existingRows.push(newRow);
     }
-    this.setState({rows: existingRows});
+    this.setState({rows: existingRows}); //update the state with the new rows
   }
 
+  //adds a new column to each row
   addCol() {
     const rows = [...this.state.rows];
+    //if the grid is empty, add a new row with one column in it
     if (rows.length === 0){
       let newRow = [];
       let newCol = "#E9EEF7";
       newRow.push(newCol);
       rows.push(newRow);
     }
+    //if grid is not empty, append a new column to each existing row
     else{
       rows.forEach(row => row.push("#E9EEF7"));
     }
     this.setState({ rows });
   };
 
+  //removes a row from the grid
   removeRow() {
     let {rows} = this.state;
     rows.pop();
     this.setState({rows});
   }
 
+  //removes a column from the grid
   removeCol() {
     let {rows} = this.state;
     for (let i = 0; i < rows.length; i++){
@@ -79,6 +89,7 @@ class App extends Component{
     }
   }
 
+  //fills all of the uncolored cells with the color that is currently selected
   fillUncolored() {
     let {rows} = this.state;
     for (let i = 0; i < rows.length; i++){
@@ -90,6 +101,8 @@ class App extends Component{
     }
     this.setState({rows});
   }
+
+  //sets the color of each cell to the currently selected color
   fillAll() {
     let {rows} = this.state;
     for (let i = 0; i < rows.length; i++){
@@ -100,6 +113,7 @@ class App extends Component{
     this.setState({rows});
   }
 
+  //sets the color of each set to standard
   clear() {
     let {rows} = this.state;
     for (let i = 0; i < rows.length; i++){
@@ -119,6 +133,7 @@ class App extends Component{
         const { rows } = this.state;
         rows[i][j] = color;
         this.setState({ rows });
+
     }
 
     activeColoring(i, j, color, activeDrawing) {
