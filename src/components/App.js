@@ -20,6 +20,7 @@ class App extends Component{
     this.fillAll = this.fillAll.bind(this);
     this.clear = this.clear.bind(this);
     this.chooseColor = this.chooseColor.bind(this);
+    this.setCellColor = this.setCellColor.bind(this);
   }
 
   addRow() {
@@ -111,9 +112,21 @@ class App extends Component{
     console.log(color);
   }
 
+    setCellColor(i, j, color) {
+        const { rows } = this.state;
+        let row2 = [...rows];
+        if (row2[i][j] !== "#E9EEF7") {
+            row2[i][j] = "#E9EEF7";
+        }
+        else {
+            row2[i][j] = color;
+        }
+        this.setState({ rows: row2 });
+    }
+
   render(){
-    const { addRow, addCol, removeRow, removeCol, fillUncolored, fillAll, clear, chooseColor } = this;
-    const { rows } = this.state;
+    const { addRow, addCol, removeRow, removeCol, fillUncolored, fillAll, clear, chooseColor, setCellColor } = this;
+    const { rows, color } = this.state;
     return(
       <div>
         <Controls 
@@ -128,7 +141,7 @@ class App extends Component{
         />
 
         <Grid 
-          rows={rows} 
+                rows={rows} color={color} setCellColor={setCellColor}
         />
       </div>
     );
