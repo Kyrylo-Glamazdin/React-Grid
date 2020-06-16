@@ -1,5 +1,7 @@
 import React from 'react';
+import '../styles/Controls.css';
 
+//the controls section with all of the buttons to control the grid
 const Controls = ({ addRow, addCol, removeRow, removeCol, fillUncolored, fillAll, clear, chooseColor }) => {
     const colors = [
         'Red',
