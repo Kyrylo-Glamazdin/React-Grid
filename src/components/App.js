@@ -131,8 +131,9 @@ class App extends Component{
 
     setCellColor(i, j, color) {
         const { rows } = this.state;
-        rows[i][j] !== "#E9EEF7" ? rows[i][j] = "#E9EEF7" : rows[i][j] = color;
+        rows[i][j] = color;
         this.setState({ rows });
+
     }
 
     activeColoring(i, j, color, activeDrawing) {
