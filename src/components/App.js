@@ -129,6 +129,7 @@ class App extends Component{
     this.setState({ color });
   }
 
+    //Changes the color of a certain column
     setCellColor(i, j, color) {
         const { rows } = this.state;
         rows[i][j] = color;
@@ -136,7 +137,9 @@ class App extends Component{
 
     }
 
+    //actively colors grids that are over mouse
     activeColoring(i, j, color, activeDrawing) {
+        //if activeDrawing is true, colors column
         if (activeDrawing) {
             const { rows } = this.state;
             rows[i][j] = color;
@@ -144,12 +147,14 @@ class App extends Component{
         }
     }
 
+    //sets active drawing to true
     setActive() {
         let { activeDrawing } = this.state;
         activeDrawing = true;
         this.setState({ activeDrawing });
     }
 
+    //sets active drawing to false
     setInactive() {
         let { activeDrawing } = this.state;
         activeDrawing = false;
@@ -173,7 +178,12 @@ class App extends Component{
         />
 
         <Grid 
-                rows={rows} color={color} setCellColor={setCellColor} activeColoring={activeColoring} setActive={setActive} activeDrawing={activeDrawing} setInactive={setInactive}
+            rows={rows} color={color}
+            setCellColor={setCellColor}
+            activeColoring={activeColoring}
+            setActive={setActive}
+            activeDrawing={activeDrawing}
+            setInactive={setInactive}
         />
       </div>
     );
